@@ -1,5 +1,3 @@
-import history from 'react-router-dom'
-
 export const goToHome = (history) => {
     history.push('/')
 }
