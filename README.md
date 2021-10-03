@@ -2,15 +2,13 @@
 
 Nome dos integrantes: 
 - Rubens Cerqueira Vieira Santos
-- Pessoa 2
-- Pessoa 3
+
 
 Link do Surge: www.link.com.br
 
 O que funciona:
-- Item 1
-- Item 2
+- A página home está funcionando.
+- A página de detalhes está funcionando.
 
 O que não funciona: 
-- Item 3
-- Item 4
+- A pokedex ainda não foi implementada.
