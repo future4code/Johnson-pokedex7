@@ -59,7 +59,7 @@ const Main = styled.div`
 
     `
 
-export const Pokedex = () => {
+export const Battle = () => {
     const history = useHistory()
     const { states, setter, requests } = useContext(ContextPokemon)
 
@@ -67,40 +67,13 @@ export const Pokedex = () => {
         console.log(states.pokedex)
     }, [])
 
-    const setDetails = (pokemon) => {
-        goToDetails(history)
-        setter.setChosenPokemon(pokemon)
-    }
-
-    const removePokemon = (pokemon) =>{
-        setter.setPokedex(states.pokedex.filter((pokedexPokemon) => {
-            return pokedexPokemon.id != pokemon.id
-        }))
-    }
-    
-    const renderCards = () =>
-        states.pokedex.map((pokemon) => {
-
-            return (
-                <PokemonCard
-                    key={pokemon.id}
-                    sprite={pokemon.sprites.front_default}
-                    name={pokemon.name}
-                    button={"Remover"}
-                    details={() => setDetails(pokemon)}
-                    onclick={() => removePokemon(pokemon)}
-
-                />
-            )
-        })
-
 
 
     return (
         <Wrapper>
             <Header />
             <Main>
-                {renderCards()}
+                
             </Main>
         </Wrapper>
     )

@@ -2,7 +2,12 @@ import React from "react";
 import { useHistory } from "react-router";
 import styled from 'styled-components'
 import PokemonLogo from "../Images/PokemonLogo.png"
-import { goToHome, goToPokedex } from "../Routes/Routes";
+import { goToBattle, goToHome, goToPokedex } from "../Routes/Routes";
+import { HeaderButton } from "./button";
+import home from '../Images/home.png'
+import pokedexicon2 from "../Images/pokedexicon2.jpg"
+import battle from "../Images/battle.png"
+
 
 const Wrapper = styled.div`
     height: 10vh;
@@ -21,25 +26,31 @@ const Wrapper = styled.div`
 const Logo = styled.img`
     width: 300px;
     height: 85%;
+
+    @media(max-Width:600px){
+        display: none;
+    }
 `
 
 const ButtonBox = styled.div`
     position:absolute;
-    right:10px;
+    display: flex;
+    align-items: center;
+    right:0;
     height: 100%;
+
+    @media(max-Width:600px){
+        position: relative;
+    }
 `
 
-const Button = styled.button`
-    height: 100%;
-    width: 80px;
-    background-color: transparent;
-    border: solid;
-    margin-right: 5px;
-    border-width:0.5px;
-    border-top: 0;
-    border-bottom: 0;
-    font-size:15px;
+const BattleButtonBox = styled.div`
+    
+    @media(max-Width:600px){
+        display: none;
+    }
 `
+
 
 export const Header = () => {
     const history = useHistory()
@@ -48,8 +59,12 @@ export const Header = () => {
         <Wrapper>
             <Logo src={PokemonLogo} />
             <ButtonBox>
-                <Button onClick={() => goToHome(history)} >Home</Button>
-                <Button onClick={() => goToPokedex(history) } >Pokédex</Button>
+                <HeaderButton name='Home' icon={home} onclick={() => goToHome(history)} ></HeaderButton>
+                <HeaderButton name='Pokédex' icon={pokedexicon2} onclick={() => goToPokedex(history)} ></HeaderButton>
+                <BattleButtonBox>
+                    <HeaderButton name='Battle' icon={battle} onclick={() => goToBattle(history)} ></HeaderButton>
+                </BattleButtonBox>
+
             </ButtonBox>
         </Wrapper>
     )

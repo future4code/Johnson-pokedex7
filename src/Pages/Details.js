@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 import background from '../Images/background.png'
 import { Header } from '../Components/header'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ContextPokemon } from '../Context/Context'
-import { goToHome } from '../Routes/Routes'
 import { useHistory } from 'react-router'
-
+import { goToHome } from '../Routes/Routes'
 
 
 const Wrapper = styled.div`
@@ -86,88 +85,61 @@ const ImageBox = styled.div`
 
 export const Details = () => {
     const { states, setter, requests } = useContext(ContextPokemon)
-    const [characteristics, setCharacteristics] = useState({ name: '', height: '', hp: 0, attack: 0, defense: 0, specialattack: 0, specialdefense: 0, weight: 0, abilities:[] })
-    const [sprites, setSprites] = useState({ front: '', frontshiny: '', back: '', backshiny: '' })
 
     const history = useHistory()
 
-    useEffect(() => {
-        choosePokemon()
-    }, [states.clickedPokemon])
+  
+    const Pokedex = () => {
+        if (states.chosenPokemon === undefined) {
+            alert('Escolha um Pokemon')
+            goToHome(history)
+            return(
+                <>
+                </>
+            )
+        } else {
+            return (
+                <Wrapper>
+                    <Header>
+                    </Header>
+                    <Main>
+                        <PokedexLeft>
+                            <LeftGreenScreen>
+                                <ImageBox><img src={states.chosenPokemon.sprites.front_default} alt='Pokemon_Front_Default' /></ImageBox>
+                                <ImageBox><img src={states.chosenPokemon.sprites.front_shiny} alt='Pokemon_Front_Shiny' /></ImageBox>
+                                <ImageBox><img src={states.chosenPokemon.sprites.back_default} alt='Pokemon_Back_Default' /></ImageBox>
+                                <ImageBox><img src={states.chosenPokemon.sprites.back_shiny} alt='Pokemon_Back_Shiny' /></ImageBox>
+                            </LeftGreenScreen>
+                        </PokedexLeft>
+
+                        <PokedexCenter>
+                        </PokedexCenter>
+                        <PokedexCenter2>
+                        </PokedexCenter2>
+
+                        <PokedexRight>
+                            <RightGreenScreen>
+                                <TextBox>
+                                    <Text> Name: {states.chosenPokemon.stats[0].base_stat} </Text>
+                                    <Text> Height: {states.chosenPokemon.stats[0].base_stat}ft</Text>
+                                    <Text> Weight: {states.chosenPokemon.stats[0].base_stat}</Text>
+                                    <Text> Hp: {states.chosenPokemon.stats[0].base_stat}</Text>
+                                    <Text> Attack: {states.chosenPokemon.stats[1].base_stat} </Text>
+                                    <Text> Defense: {states.chosenPokemon.stats[2].base_stat} </Text>
+                                    <Text> Special-Attack: {states.chosenPokemon.stats[3].base_stat}</Text>
+                                    <Text> Special-Defense: {states.chosenPokemon.stats[4].base_stat}</Text>
+                                    <Text> Abilities: </Text>
+                                </TextBox>
+                            </RightGreenScreen>
+                        </PokedexRight>
 
 
+                    </Main>
 
-    const choosePokemon = () =>
-        states.pokemonDetails.map((pokemon) => {
+                </Wrapper>
+            )
+        }
+    }
 
-
-            if (pokemon.id === states.clickedPokemon) {
-                setSprites({
-                    front: pokemon.sprites.front_default,
-                    frontshiny: pokemon.sprites.front_shiny,
-                    back: pokemon.sprites.back_default,
-                    backshiny: pokemon.sprites.back_shiny
-                })
-
-                setCharacteristics({
-                    name: pokemon.name,
-                    height: pokemon.height,
-                    weight: pokemon.weight,
-                    hp: pokemon.stats[0].base_stat,
-                    defense: pokemon.stats[1].base_stat,
-                    specialattack: pokemon.stats[2].base_stat,
-                    specialdefense: pokemon.stats[3].base_stat,
-                    abilities:pokemon.abilities
-                    
-
-                })
-                console.log(pokemon)
-            }
-        })
-
-
-    return (
-        <Wrapper>
-            <Header>
-            </Header>
-            <Main>
-                <PokedexLeft>
-                    <LeftGreenScreen>
-                        <ImageBox><img src={sprites.front} /></ImageBox>
-                        <ImageBox><img src={sprites.back} /></ImageBox>
-                        <ImageBox><img src={sprites.frontshiny} /></ImageBox>
-                        <ImageBox><img src={sprites.backshiny} /></ImageBox>
-                    </LeftGreenScreen>
-                </PokedexLeft>
-
-                <PokedexCenter>
-                </PokedexCenter>
-                <PokedexCenter2>
-                </PokedexCenter2>
-
-                <PokedexRight>
-                    <RightGreenScreen>
-                        <TextBox>
-                            <Text> Name: {characteristics.name} </Text>
-                            <Text> Height: {characteristics.height}ft</Text>
-                            <Text> Weight: {characteristics.weight}</Text>
-                            <Text> Hp: {characteristics.hp}</Text>
-                            <Text> Attack: {characteristics.attack} </Text>
-                            <Text> Defense: {characteristics.defense} </Text>
-                            <Text> Special-Attack: {characteristics.specialattack}</Text>
-                            <Text> Special-Defense: {characteristics.specialdefense}</Text>
-                            <Text> Abilities: {characteristics.abilities.map((ab)=>{
-                                return (
-                                    <span>{ab.ability.name} </span>
-                                )
-                            })}</Text>
-                        </TextBox>
-                    </RightGreenScreen>
-                </PokedexRight>
-
-
-            </Main>
-
-        </Wrapper>
-    )
+    return Pokedex()
 }
