@@ -20,7 +20,17 @@ const Card = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    max-width:180px;
+    max-width:165px;
+    max-height: 200px;
+    font-family: "PokemonGameBoy";
+
+
+    @media(max-Width:600px){
+       margin-top: 60px;
+       width:165px;
+       height:200px;
+   }
+    
 `
 const Sprite = styled.img`
     width: 80%;
@@ -29,6 +39,8 @@ const Sprite = styled.img`
 
 const Name = styled.p`
     margin:0;
+    font-family: 'PokemonGB';
+
 `
 
 const ButtonBox = styled.div`
@@ -36,6 +48,8 @@ const ButtonBox = styled.div`
     width: 100%;
     display: flex;
     margin-top:auto;
+
+  
 `
 
 const PokedexButton = styled.button`
@@ -45,6 +59,14 @@ const PokedexButton = styled.button`
     border-width: 1px;
     border-bottom: 0;
     border-left: 0;
+
+    :hover{
+        cursor: pointer;
+    }
+
+    :active{
+        background-color:darkgreen
+    }
     
 `
 
@@ -56,13 +78,13 @@ const DetailsButton = styled(PokedexButton)`
 
 export const PokemonCard = (props) => {
 
-    return(
-        <Wrapper>   
+    return (
+        <Wrapper>
             <Card>
                 <Sprite src={props.sprite}></Sprite>
                 <Name>{props.name}</Name>
                 <ButtonBox>
-                    <PokedexButton>Adicionar a pokedex</PokedexButton>
+                    <PokedexButton onClick={props.onclick} >{props.button}</PokedexButton>
                     <DetailsButton onClick={props.details} >Detalhes</DetailsButton>
                 </ButtonBox>
             </Card>

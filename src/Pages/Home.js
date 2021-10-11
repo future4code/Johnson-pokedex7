@@ -17,13 +17,49 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     flex-direction:column;
+    font-family: 'PokemonGB';
 `
 const Main = styled.div`
     height: 100%;
     width: 80%;
     display: grid;
     grid-template-rows: 22vh 22vh 22vh 22vh ;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: 20% 20% 20% 20% 20% ;
+
+    
+
+    @media(max-Width:1360px){
+        grid-template-columns: auto auto auto auto;
+        overflow:scroll;
+
+
+        ::-webkit-scrollbar {
+        overflow-x: hidden;
+    }
+
+
+    }
+
+    @media(max-Width:1100px){
+        grid-template-columns: auto auto auto ;
+    }
+
+    
+    @media(max-Width:800px){
+        grid-template-columns: auto auto;
+    }
+
+
+    
+    @media(max-Width:600px){
+        display: flex;
+        flex-direction: column;
+        ::-webkit-scrollbar {
+        display: none;
+        }
+    }
+
+
 `
 
 export const Home = () => {
@@ -31,7 +67,7 @@ export const Home = () => {
     const { states, setter, requests } = useContext(ContextPokemon)
 
     useEffect(() => {
-        if(states.pokemonDetails.length <= 1){
+        if (states.pokemonDetails.length <= 1) {
             getAllDetails()
         }
     }, [states.pokemon])
@@ -43,25 +79,31 @@ export const Home = () => {
         })
     }
 
-    const setDetails = (id) => {
-        setter.setClickedPokemon(id)
+    const setDetails = (pokemon) => {
         goToDetails(history)
+        setter.setChosenPokemon(pokemon)
     }
 
-    const SendToPokedex = () => {
-
+    const SendToPokedex = (poke) => {
+        setter.setPokedex(pokedex => [...pokedex, poke])
     }
-    
+
     const renderCards = () =>
         states.pokemonDetails.map((pokemon) => {
-            return (
-                <PokemonCard 
-                key={pokemon.id}
-                sprite={pokemon.sprites.front_default}    
-                name={pokemon.name}
-                details={() => setDetails(pokemon.id)}
-                />
-            )
+
+            if (states.pokedex.includes(pokemon) === false) {
+
+                return (
+                    <PokemonCard
+                        key={pokemon.id}
+                        sprite={pokemon.sprites.front_default}
+                        name={pokemon.name}
+                        button={'Adicionar a Pokédex'}
+                        details={() => setDetails(pokemon)}
+                        onclick={() => SendToPokedex(pokemon)}
+                    />
+                )
+            }
         })
 
 
