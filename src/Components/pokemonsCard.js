@@ -21,7 +21,9 @@ const Card = styled.div`
     align-items: center;
     flex-direction: column;
     max-width:165px;
+    min-width: 160px;
     max-height: 200px;
+    min-height: 160px;
     font-family: "PokemonGameBoy";
 
 
