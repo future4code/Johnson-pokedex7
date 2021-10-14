@@ -77,7 +77,7 @@ const PokedexCenter2 = styled.div`
 `
 const ImageBox = styled.div`
     width:100%;
-    heigth:100%;
+    height:100%;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -120,7 +120,7 @@ export const Details = () => {
                         <PokedexRight>
                             <RightGreenScreen>
                                 <TextBox>
-                                    <Text> Name: {states.chosenPokemon.stats[0].base_stat} </Text>
+                                    <Text> Name: {states.chosenPokemon.name} </Text>
                                     <Text> Height: {states.chosenPokemon.stats[0].base_stat}ft</Text>
                                     <Text> Weight: {states.chosenPokemon.stats[0].base_stat}</Text>
                                     <Text> Hp: {states.chosenPokemon.stats[0].base_stat}</Text>

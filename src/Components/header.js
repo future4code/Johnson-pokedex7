@@ -19,13 +19,25 @@ const Wrapper = styled.div`
     align-items: center;
     position: relative;
     
+    @media(max-Width:1300px){
+        justify-content: flex-start;
+    }
+
     @media(max-Width:600px){
         height: 15vh;
+        justify-content: space-around;
     }
 `
 const Logo = styled.img`
     width: 300px;
     height: 85%;
+
+    
+    
+    @media(max-Width:1300px){
+        margin-left: 30px;
+    }
+
 
     @media(max-Width:600px){
         display: none;
@@ -46,7 +58,8 @@ const ButtonBox = styled.div`
 
 const BattleButtonBox = styled.div`
     
-    @media(max-Width:600px){
+
+    @media(max-Width:850px){
         display: none;
     }
 `
