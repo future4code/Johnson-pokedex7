@@ -1,16 +1,14 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Rubens Cerqueira Vieira Santos
 
-Link do Surge: www.link.com.br
+
+Link do Surge: impossible-wheel.surge.sh
 
 O que funciona:
-- Item 1
-- Item 2
+- A página home está funcionando.
+- A página de detalhes está funcionando.
 
 O que não funciona: 
-- Item 3
-- Item 4
+- A pokedex ainda não foi implementada.
